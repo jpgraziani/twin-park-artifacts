@@ -69,7 +69,7 @@ class ShopProvider extends Component {
     const value = {
       ...this.state,
       fetchAllProducts: this.fetchAllProducts,
-      fetchProductsWithHandle: this.fetchProductWithHandle,
+      fetchProductWithHandle: this.fetchProductWithHandle,
       addItemToCheckout: this.addItemToCheckout,
       removeLineItem: this.removeLineItem,
       closeCart: this.closeCart,
