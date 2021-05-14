@@ -17,7 +17,7 @@ const Home = () => {
 
   return (
     <Box>
-    <Grid>
+    <Grid templateColumns="repeat(3, 1fr">
   
       {
         products.map(product => (
