@@ -1,7 +1,7 @@
 import React, { useContext } from 'react'
 import { Flex, Icon, Image, Text } from '@chakra-ui/react'
 import { ShopContext } from '../context/shopContext'
-import { chakra } from '@chakra-ui/system'
+import { MdMenu, MdShoppingBasket } from 'react-icons/md'
 
 const NavBar = () => {
 
@@ -9,10 +9,12 @@ const NavBar = () => {
 
 
   return (
-    <Flex flexDirection="row" justifyContent="space-between" p="2rem">
-      <Text>Open Menu</Text>
-      <Text>Logo</Text>
-      <Text>Cart</Text>
+    <Flex backgroundColor="#FFA8E2" flexDirection="row" justifyContent="space-between" p="2rem" >
+      <Icon fill="white" cursor="pointer" as={MdMenu} w={30} h={30} />
+      <Image src="https://cdn.shopify.com/s/files/1/0472/5705/9496/files/Logologo_1.svg?v1610055540" w={100} h={100}/>
+      <Icon fill="white" cursor="pointer" as={MdShoppingBasket} w={30} h={30} 
+        onClick={() => openCart()}
+      />
     </Flex>
   )
 }

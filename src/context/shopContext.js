@@ -20,7 +20,6 @@ class ShopProvider extends Component {
 
   
   componentDidMount() {
-    this.fetchAllProducts()
     if (localStorage.checkout_id) {
       this.fetchCheckout(localStorage.checkout_id)
     } else {
@@ -34,15 +33,31 @@ class ShopProvider extends Component {
     this.setState({ checkout: checkout })
   };
 
-  fetchCheckout = (checkoutId) => {
+  fetchCheckout = async(checkoutId) => {
     client.checkout
       .fetch(checkoutId)
       .then((checkout) => {
         this.setState({ checkout: checkout })
       })
+      .catch((error) => console.log(error))
   };
 
-  addItemToCheckout = async () => {};
+  addItemToCheckout = async (variantId, quantity) => {
+    const lineItemsToAdd = [
+      {
+        variantId,
+        quantity: parseInt(quantity, 10),
+      }
+    ]
+    const checkout = await client.checkout.addLineItems(
+      this.state.checkout.id, 
+      lineItemsToAdd
+      );
+    // then update state
+      this.setState({checkout: checkout})
+
+      this.openCart();
+  };
 
   removeLineItem = async (lineItemIdsToRemove) => {};
 
@@ -57,9 +72,9 @@ class ShopProvider extends Component {
     this.setState({ product: product });
   };
 
-  closeCart = () => {};
+  closeCart = () => { this.setState({isCartOpen: false}) };
 
-  openCart = () => {};
+  openCart = () => { this.setState({isCartOpen: true}) };
 
   closeMenu = () => {};
 
